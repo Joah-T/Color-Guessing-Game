@@ -1,0 +1,66 @@
+let wins = 0;
+let loses = 0;
+let targetColorHex;
+
+function generateRandomColor() {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+}
+
+function createColorBoxes() {
+    const grid = document.getElementById('colorGrid');
+    grid.innerHTML = '';
+    
+    // Generate target color
+    targetColorHex = generateRandomColor();
+    document.getElementById('targetColor').style.backgroundColor = targetColorHex;
+
+    // Create array of colors including the target
+    const colors = [targetColorHex];
+    for (let i = 0; i < 5; i++) {
+        colors.push(generateRandomColor());
+    }
+
+    // Shuffle colors
+    for (let i = colors.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [colors[i], colors[j]] = [colors[j], colors[i]];
+    }
+
+    // Create color boxes
+    colors.forEach(color => {
+        const box = document.createElement('div');
+        box.className = 'color-box';
+        box.style.backgroundColor = color;
+        box.onclick = () => checkGuess(color);
+        grid.appendChild(box);
+    });
+}
+
+function checkGuess(guessedColor) {
+    if (guessedColor === targetColorHex) {
+        wins++;
+        document.getElementById('wins').textContent = wins;
+        alert('Correct! You win!');
+        createColorBoxes();
+    } else {
+        loses++;
+        document.getElementById('loses').textContent = loses;
+        alert('Wrong! Try again!');
+    }
+}
+
+function resetGame() {
+    wins = 0;
+    loses = 0;
+    document.getElementById('wins').textContent = wins;
+    document.getElementById('loses').textContent = loses;
+    createColorBoxes();
+}
+
+// Initialize game
+createColorBoxes();

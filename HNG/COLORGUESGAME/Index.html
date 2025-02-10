@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Guessing Game</title>
+</head>
+<body>
+    <body>
+        <div class="game-container">
+            <div class="score-container">
+                <div class="score-box">
+                    <div>Wins</div>
+                    <div id="wins">0</div>
+                </div>
+                <div class="score-box">
+                    <div>Loses</div>
+                    <div id="loses">0</div>
+                </div>
+            </div>
+            <h2 style="text-align: center">Guess The Correct Color</h2>
+            <div class="target-color" id="targetColor"></div>
+            <div class="color-grid" id="colorGrid"></div>
+            <button class="reset-btn" onclick="resetGame()">Reset</button>
+        </div>
+        <Scripts src=".Scripts.js"></Scripts>
+</body>
+</html>
