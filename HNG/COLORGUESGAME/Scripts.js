@@ -20,23 +20,19 @@ function createColorBoxes() {
     const grid = document.getElementById('colorGrid');
     grid.innerHTML = '';
     
-    // Generate target color
     targetColorHex = generateRandomColor();
     document.getElementById('targetColor').style.backgroundColor = targetColorHex;
 
-    // Create array of colors including the target
     const colors = [targetColorHex];
     for (let i = 0; i < 5; i++) {
         colors.push(generateRandomColor());
     }
 
-    // Shuffle colors
     for (let i = colors.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [colors[i], colors[j]] = [colors[j], colors[i]];
     }
 
-    // Create color boxes
     colors.forEach(color => {
         const box = document.createElement('div');
         box.className = 'color-box';
