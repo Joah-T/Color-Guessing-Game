@@ -11,6 +11,11 @@ function generateRandomColor() {
     return color;
 }
 
+function updateScores() {
+    document.getElementById('wins').textContent = wins;
+    document.getElementById('loses').textContent = loses;
+}
+
 function createColorBoxes() {
     const grid = document.getElementById('colorGrid');
     grid.innerHTML = '';
@@ -44,21 +49,18 @@ function createColorBoxes() {
 function checkGuess(guessedColor) {
     if (guessedColor === targetColorHex) {
         wins++;
-        document.getElementById('wins').textContent = wins;
-        alert('Correct! You win!');
-        createColorBoxes();
+        updateScores();
+        setTimeout(() => createColorBoxes(), 500); // Short delay before next round
     } else {
         loses++;
-        document.getElementById('loses').textContent = loses;
-        alert('Wrong! Try again!');
+        updateScores();
     }
 }
 
 function resetGame() {
     wins = 0;
     loses = 0;
-    document.getElementById('wins').textContent = wins;
-    document.getElementById('loses').textContent = loses;
+    updateScores();
     createColorBoxes();
 }
 
