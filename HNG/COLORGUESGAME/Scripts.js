@@ -81,7 +81,7 @@ function showResultIcon(isWin) {
 function updateScores() {
     document.getElementById('wins').textContent = wins;
     document.getElementById('loses').textContent = loses;
-    updateFlameIcon();
+
 }
 
 function checkGuess(guessedColor) {
